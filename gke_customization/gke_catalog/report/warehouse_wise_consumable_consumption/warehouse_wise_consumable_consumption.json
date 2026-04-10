@@ -19,7 +19,7 @@
  "name": "Warehouse wise Consumable Consumption",
  "owner": "Administrator",
  "prepared_report": 0,
- "query": "SELECT sed.item_code AS \"Item Code\", sed.item_name AS \"Item Name\", i.item_group AS \"Item Group\", sed.t_warehouse AS \"Department\", SUM(sed.qty) AS \"Qty\", SUM(sed.basic_amount) AS \"Cost\" FROM `tabStock Entry Detail` sed LEFT JOIN `tabItem` i ON i.name = sed.item_code LEFT JOIN `tabItem Group` ig ON ig.name = i.item_group LEFT JOIN `tabStock Entry` se ON se.name = sed.parent WHERE ig.parent_item_group = 'Consumable' AND (%(item_group)s IS NULL OR %(item_group)s = '' OR i.item_group = %(item_group)s) GROUP BY sed.item_code, sed.t_warehouse ORDER BY sed.t_warehouse, sed.item_code",
+ "query": "SELECT sed.item_code AS \"Item Code\", sed.item_name AS \"Item Name\", i.item_group AS \"Item Group\", sed.t_warehouse AS \"Department\", SUM(sed.qty) AS \"Qty\", SUM(sed.basic_amount) AS \"Cost\" FROM `tabStock Entry Detail` sed LEFT JOIN `tabItem` i ON i.name = sed.item_code LEFT JOIN `tabItem Group` ig ON ig.name = i.item_group LEFT JOIN `tabStock Entry` se ON se.name = sed.parent WHERE ig.parent_item_group = 'Consumable' AND se.docstatus = 1 AND (%(item_group)s IS NULL OR %(item_group)s = '' OR i.item_group = %(item_group)s) GROUP BY sed.item_code, sed.t_warehouse ORDER BY sed.t_warehouse, sed.item_code",
  "ref_doctype": "Item",
  "report_name": "Warehouse wise Consumable Consumption",
  "report_type": "Query Report",
